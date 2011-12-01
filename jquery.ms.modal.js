@@ -25,8 +25,9 @@
 		},
 		events:{},
 		fixPosition:function(e){
-			var left = (document.documentElement.clientWidth / 2) - (e.width() / 2);
-			var top = (document.documentElement.clientHeight / 2) - (e.height() / 2) + jQuery(window).scrollTop();
+                        var w = $(window);
+			var left = (w.width() / 2) - (e.width() / 2);
+			var top = (w.height() / 2) - (e.height() / 2) + $(window).scrollTop();
 			e.css('position', 'absolute').css('left', left).css('top', top);
 		},
 		bindEvents:function(e, events){
@@ -75,10 +76,10 @@
 	$.fn.popup = function(events) {
 		var e = this;
 		$.popup.overlay.show();
-		this.css('z-index', $.popup.defaults.overlayZIndex+1).show();
 		$.popup.fixPosition(this);
-		$.popup.bindEvents(this);
+		this.css('z-index', $.popup.defaults.overlayZIndex+1).show();
 		$.popup.events = events == null ? {} : events;
+		$.popup.bindEvents(this);
 		return this;
 	};
 	
