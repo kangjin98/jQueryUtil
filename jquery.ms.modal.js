@@ -26,9 +26,11 @@
 		events:{},
 		fixPosition:function(e){
                         var w = $(window);
-			var left = (w.width() / 2) - (e.width() / 2);
-			var top = (w.height() / 2) - (e.height() / 2) + $(window).scrollTop();
-			e.css('position', 'absolute').css('left', left).css('top', top);
+                        e.css({
+                            'top':w.height()/2-e.height()/2,
+                            'left':w.width()/2-e.width()/2,
+                            'position':'absolute'
+                        });
 		},
 		bindEvents:function(e, events){
 			$(window).resize(function(){
@@ -82,7 +84,7 @@
 		$.popup.bindEvents(this);
 		return this;
 	};
-	
+
 	$.fn.close = function() {
 		$.popup.overlay.hide();
 		this.hide();
